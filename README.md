@@ -1,7 +1,7 @@
 # sheetmenu
 Library for speedy implementation menu with BottomSheet
 
-[![Release](https://jitpack.io/v/whalemare/sheetmenu.svg)](https://jitpack.io/#whalemare/sheetmenu)
+[![Release](https://jitpack.io/v/swabbass/sheetmenu.svg)](https://jitpack.io/#swabbass/sheetmenu)
 
 ![Screenshot](screens/1.3.2.gif)
 
@@ -62,7 +62,7 @@ allprojects {
 Include dependency with `BottomSheet` in your app.gradle file with:
 
 ```diff
-+ implementation 'com.github.whalemare:sheetmenu:1.3.6'
++ implementation 'com.github.swabbass:sheetmenu:1.3.7'
 ```
 
 
