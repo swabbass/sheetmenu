@@ -1,7 +1,9 @@
 package ru.whalemare.sheetmenu
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.support.design.widget.BottomSheetDialog
+import android.support.v7.view.menu.MenuBuilder
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -10,6 +12,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import ru.whalemare.sheetmenu.adapter.MenuAdapter
+import ru.whalemare.sheetmenu.adapter.StringOnlyMenuItem
 import ru.whalemare.sheetmenu.extension.inflate
 import ru.whalemare.sheetmenu.extension.marginTop
 import ru.whalemare.sheetmenu.extension.toList
@@ -34,7 +37,10 @@ open class SheetMenu(
         var autoCancel: Boolean = true,
         var showIcons: Boolean = true) {
 
+    var menuItems = mapOf<String,Drawable?>()
+
     fun show(context: Context) {
+
         val root = LayoutInflater.from(context).inflate(R.layout.bottom_sheet_horizontal_list, null)
 
         val textTitle = root.findViewById(R.id.text_title) as TextView
@@ -72,7 +78,7 @@ open class SheetMenu(
     }
 
     protected open fun processRecycler(recycler: RecyclerView, dialog: BottomSheetDialog) {
-        if (menu > 0) {
+        if (menu > 0 || menuItems.isNotEmpty()) {
             if (layoutManager == null) {
                 layoutManager = LinearLayoutManager(recycler.context, LinearLayoutManager.VERTICAL, false)
             }
@@ -83,8 +89,13 @@ open class SheetMenu(
             }
 
             if (adapter == null) {
+                val menuList: List<MenuItem> = if (menu > 0) {
+                    recycler.context.inflate(menu).toList()
+                } else {
+                    menuItems.map { StringOnlyMenuItem(it.key,it.value) }
+                }
                 adapter = MenuAdapter(
-                        menuItems = recycler.context.inflate(menu).toList(),
+                        menuItems = menuList,
                         callback = MenuItem.OnMenuItemClickListener {
                             click.onMenuItemClick(it)
                             if (autoCancel) dialog.cancel()

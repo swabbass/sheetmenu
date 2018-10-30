@@ -1,7 +1,10 @@
 package ru.whalemare.bottomsheet
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
+import android.support.v4.graphics.drawable.DrawableCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.view.MenuItem
@@ -9,6 +12,7 @@ import android.view.View
 import android.widget.CheckBox
 import android.widget.Toast
 import ru.whalemare.sheetmenu.SheetMenu
+import java.util.ArrayList
 
 open class MainActivityKotlin : AppCompatActivity() {
 
@@ -42,7 +46,7 @@ open class MainActivityKotlin : AppCompatActivity() {
                 toast("Click on ${it.title}")
                 true
             }
-            menu = R.menu.menu_icons
+            menuItems = mapOf<String, Drawable?>("option 1" to ContextCompat.getDrawable(baseContext,R.drawable.ic_atom),"option 2" to null)
             showIcons = needIcons
         }.show(this)
     }

@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ru.whalemare.sheetmenu.SheetMenu;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +29,9 @@ public class MainActivity extends AppCompatActivity {
         new SheetMenu().apply(new SheetMenu.ActionSingle<SheetMenu>() {
             @Override
             public void call(SheetMenu it) {
-                it.setMenu(R.menu.menu_icons);
+                List<String> menuStrings=new ArrayList<>();
+                menuStrings.add("option 1 ");
+                menuStrings.add("option 2 ");
                 it.setTitle("Title");
                 it.setAutoCancel(true);
             }
