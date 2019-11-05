@@ -2,7 +2,6 @@ package ru.whalemare.sheetmenu.adapter
 
 import android.content.Intent
 import android.graphics.drawable.Drawable
-import android.support.v4.view.MenuItemCompat
 import android.view.*
 
 class StringOnlyMenuItem(private var menuTitle: String, private var drawable: Drawable?) : MenuItem {
